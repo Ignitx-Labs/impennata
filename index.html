@@ -157,6 +157,8 @@ table.res .m1{color:var(--gold)}table.res .m2{color:#d6dbe6}table.res .m3{color:
   #posBig{font-size:34px}
   #mini{top:108px;width:126px;height:98px}
 }
+.langsel{position:absolute;top:0;right:0;gap:4px}
+.langsel .chip{padding:4px 8px;font-size:11px}
 #garage{position:fixed;inset:0;pointer-events:none}
 #garage .gpanel{pointer-events:auto;position:absolute;top:16px;left:16px;width:min(340px,calc(100% - 32px));max-height:calc(100% - 100px);overflow:hidden;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px;backdrop-filter:blur(10px);display:flex;flex-direction:column;gap:clamp(6px,1.2vh,12px)}
 .gnav{display:grid;grid-template-columns:40px 1fr 40px;align-items:center;gap:8px;text-align:center}
@@ -215,8 +217,8 @@ table.res .m1{color:var(--gold)}table.res .m2{color:#d6dbe6}table.res .m3{color:
 <div id="hud" class="hidden">
   <div id="hTL" class="hb">
     <div id="ptag" class="ptag hidden"></div>
-    <div id="raceL"><div class="lbl">Posizione</div><div id="posBig">1°<small>/4</small></div></div>
-    <div id="freeL"><div class="lbl">Punti</div><div id="score">0</div></div>
+    <div id="raceL"><div class="lbl" data-en="Position">Posizione</div><div id="posBig">1°<small>/4</small></div></div>
+    <div id="freeL"><div class="lbl" data-en="Points">Punti</div><div id="score">0</div></div>
     <div id="mult">x1 COMBO</div>
   </div>
   <div id="hTC" class="hb">
@@ -224,11 +226,11 @@ table.res .m1{color:var(--gold)}table.res .m2{color:#d6dbe6}table.res .m3{color:
     <div class="prog" id="prog"><span class="fin"></span></div>
     <div class="lbl" id="progLbl" style="text-align:center">0 / 0 m</div>
   </div>
-  <div id="hTR" class="hb"><div class="lbl" id="bestLbl">Record</div><div class="v" id="best">–</div><div class="lbl">Punti stile</div><div class="v" id="style">0</div></div>
+  <div id="hTR" class="hb"><div class="lbl" id="bestLbl">Record</div><div class="v" id="best">–</div><div class="lbl" data-en="Style points">Punti stile</div><div class="v" id="style">0</div></div>
   <button id="mute">♪ ON</button>
-  <canvas id="mini" class="hb hidden" width="180" height="140" aria-label="Mappa del circuito"></canvas>
+  <canvas id="mini" class="hb hidden" width="180" height="140" aria-label="Mappa del circuito" data-en-label="Track map"></canvas>
   <div id="hBL" class="hb">
-    <div class="lbl">Angolo impennata</div>
+    <div class="lbl" data-en="Wheelie angle">Angolo impennata</div>
     <svg viewBox="0 0 180 104" aria-label="Wheelie angle">
       <path id="arcBg" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="10"/>
       <path id="arcOk" fill="none" stroke="#3dff8a" stroke-width="10" opacity=".85"/>
@@ -239,7 +241,7 @@ table.res .m1{color:var(--gold)}table.res .m2{color:#d6dbe6}table.res .m3{color:
     </svg>
   </div>
   <div id="hBC" class="hb"><div class="lbl" id="turboLbl">Turbo</div><div class="tbar"><i id="turboFill"></i></div><div class="hint" id="turboHint">Impenna per caricare · SHIFT per usare</div></div>
-  <div id="hBR" class="hb"><div class="lbl">Velocità</div><div id="spd">0</div><div class="lbl">km/h</div></div>
+  <div id="hBR" class="hb"><div class="lbl" data-en="Speed">Velocità</div><div id="spd">0</div><div class="lbl">km/h</div></div>
   <div id="wbanner">IMPENNATA 0.0s</div>
 </div>
 <div id="pops"></div>
@@ -247,41 +249,42 @@ table.res .m1{color:var(--gold)}table.res .m2{color:#d6dbe6}table.res .m3{color:
 <div id="big" class="hidden"></div>
 
 <div id="menu" class="screen hidden">
-  <div>
+  <div style="position:relative">
+    <div class="langsel chips"><button class="chip" data-lang="it" aria-label="Italiano">IT</button><button class="chip" data-lang="en" aria-label="English">EN</button></div>
     <img id="logoImg" class="logo" alt="IGNITX Labs, an Ignite Strategies LLC product">
-    <div class="eyebrow"><span class="tri"><i></i><i></i><i></i></span>CAMPIONATO 2026</div>
+    <div class="eyebrow"><span class="tri"><i></i><i></i><i></i></span><span data-en="CHAMPIONSHIP 2026">CAMPIONATO 2026</span></div>
     <h1>IMPEN<span>NATA</span></h1>
-    <div class="sub">Wheelie racing championship. Made in Italy.</div>
+    <div class="sub" data-en="Wheelie racing championship. Made in Italy.">Campionato di gare in impennata. Made in Italy.</div>
   </div>
   <div>
-    <div class="gl">1 · DISCIPLINA</div>
+    <div class="gl" data-en="1 · DISCIPLINE">1 · DISCIPLINA</div>
     <div class="cards c2" id="clsCards">
-      <button class="card" data-cls="moto"><div class="brand ap">corsara</div><div class="cd">Moto · gas, impennate e salti in pista</div></button>
-      <button class="card" data-cls="bike"><div class="brand pn">FRECCIA</div><div class="cd">Bici · pedala a ritmo, vola sulle rampe</div></button>
+      <button class="card" data-cls="moto"><div class="brand ap">corsara</div><div class="cd" data-en="Motorbike · throttle, wheelies and jumps">Moto · gas, impennate e salti in pista</div></button>
+      <button class="card" data-cls="bike"><div class="brand pn">FRECCIA</div><div class="cd" data-en="Bicycle · pedal in rhythm, fly off the ramps">Bici · pedala a ritmo, vola sulle rampe</div></button>
     </div>
   </div>
   <div>
-    <div class="gl">2 · MODELLO <small id="modelSub"></small><button class="glink" id="openGarage">GARAGE ▸</button></div>
+    <div class="gl"><span data-en="2 · MODEL">2 · MODELLO</span> <small id="modelSub"></small><button class="glink" id="openGarage">GARAGE ▸</button></div>
     <div class="cards c3" id="modelCards"></div>
   </div>
   <div>
-    <div class="gl">3 · TRACCIATO</div>
+    <div class="gl" data-en="3 · TRACK">3 · TRACCIATO</div>
     <div class="cards c3" id="worldCards">
-      <button class="card wc" data-w="city"><div class="ct">MILANO NOTTE</div><div class="cd">Circuito cittadino</div></button>
-      <button class="card wc" data-w="mountains"><div class="ct">PASSO DELLO STELVIO</div><div class="cd">2.758 m s.l.m.</div></button>
-      <button class="card wc" data-w="desert"><div class="ct">DUNE DI PISCINAS</div><div class="cd">Sardegna al tramonto</div></button>
+      <button class="card wc" data-w="city"><div class="ct" data-en="MILAN BY NIGHT">MILANO NOTTE</div><div class="cd" data-en="City circuit">Circuito cittadino</div></button>
+      <button class="card wc" data-w="mountains"><div class="ct" data-en="STELVIO PASS">PASSO DELLO STELVIO</div><div class="cd" data-en="2,758 m above sea level">2.758 m s.l.m.</div></button>
+      <button class="card wc" data-w="desert"><div class="ct" data-en="PISCINAS DUNES">DUNE DI PISCINAS</div><div class="cd" data-en="Sardinia at sunset">Sardegna al tramonto</div></button>
     </div>
   </div>
   <div>
-    <div class="gl">4 · MODALITÀ<span class="plsel"><button class="chip" data-pl="1">1 GIOCATORE</button><button class="chip" data-pl="2">2 GIOCATORI</button><button class="chip" id="bcChip" title="Guida col corpo tramite webcam">📷 GUIDA COL CORPO</button></span></div>
+    <div class="gl"><span data-en="4 · MODE">4 · MODALITÀ</span><span class="plsel"><button class="chip" data-pl="1" data-en="1 PLAYER">1 GIOCATORE</button><button class="chip" data-pl="2" data-en="2 PLAYERS">2 GIOCATORI</button><button class="chip" id="bcChip" title="Guida col corpo tramite webcam" data-en-label="Ride with your body using the webcam">📷 GUIDA COL CORPO</button></span></div>
     <div class="cards c3" id="modeCards">
-      <button class="card" data-mode="gp"><div class="ct">GRAN PREMIO</div><div class="cd">Circuito, vista da dietro. Curve, rivali e ostacoli da schivare.</div></button>
-      <button class="card" data-mode="race"><div class="ct">SPRINT</div><div class="cd">Rettilineo laterale con salti, rampe e 3 rivali.</div></button>
-      <button class="card" data-mode="free"><div class="ct">FREESTYLE</div><div class="cd">Punteggio infinito. Una caduta e finisce.</div></button>
+      <button class="card" data-mode="gp"><div class="ct" data-en="GRAND PRIX">GRAN PREMIO</div><div class="cd" data-en="Circuit, chase camera. Corners, rivals and obstacles to dodge.">Circuito, vista da dietro. Curve, rivali e ostacoli da schivare.</div></button>
+      <button class="card" data-mode="race"><div class="ct">SPRINT</div><div class="cd" data-en="Side-on straight with jumps, ramps and 3 rivals.">Rettilineo laterale con salti, rampe e 3 rivali.</div></button>
+      <button class="card" data-mode="free"><div class="ct">FREESTYLE</div><div class="cd" data-en="Endless scoring. One crash and it is over.">Punteggio infinito. Una caduta e finisce.</div></button>
     </div>
     <div class="plrow" id="p2Row"><span id="p2Pick" class="chips"></span></div>
   </div>
-  <button id="startBtn" class="cta">PARTENZA ▸</button>
+  <button id="startBtn" class="cta" data-en="START ▸">PARTENZA ▸</button>
   <div class="help" id="help"></div>
   <div class="bestline" id="menuBest"></div>
 </div>
@@ -289,47 +292,47 @@ table.res .m1{color:var(--gold)}table.res .m2{color:#d6dbe6}table.res .m3{color:
 <div id="garage" class="hidden">
   <div class="gpanel">
     <div class="eyebrow"><span class="tri"><i></i><i></i><i></i></span>GARAGE</div>
-    <div class="chips"><button class="chip" data-gcls="moto">MOTO</button><button class="chip" data-gcls="bike">BICI</button></div>
-    <div class="chips" id="gWho"><button class="chip" data-gp="0">GIOCATORE 1</button><button class="chip" data-gp="1">GIOCATORE 2</button></div>
+    <div class="chips"><button class="chip" data-gcls="moto" data-en="MOTORBIKES">MOTO</button><button class="chip" data-gcls="bike" data-en="BICYCLES">BICI</button></div>
+    <div class="chips" id="gWho"><button class="chip" data-gp="0" data-en="PLAYER 1">GIOCATORE 1</button><button class="chip" data-gp="1" data-en="PLAYER 2">GIOCATORE 2</button></div>
     <img id="gArt" class="gart" alt="">
     <div class="gnav">
-      <button class="arrow" id="gPrev" aria-label="Modello precedente">◀</button>
+      <button class="arrow" id="gPrev" aria-label="Modello precedente" data-en-label="Previous model">◀</button>
       <div><div id="gBrand" class="brand ap">corsara</div><div class="gname" id="gName"></div><div class="cd" id="gTag"></div><div class="gcount" id="gCount"></div></div>
-      <button class="arrow" id="gNext" aria-label="Modello successivo">▶</button>
+      <button class="arrow" id="gNext" aria-label="Modello successivo" data-en-label="Next model">▶</button>
     </div>
     <div class="gst" id="gStats"></div>
-    <div><div class="lbl" style="margin-bottom:6px">Colorazione</div><div class="chips" id="gLiv"></div></div>
-    <div class="chips"><button class="chip on" id="gRider">CON PILOTA</button><button class="chip on" id="gSpin">ROTAZIONE</button></div>
-    <button class="cta" id="gGo">PARTENZA ▸</button>
-    <button class="ghost" id="gBack">◂ SCEGLI E TORNA AL MENU</button>
+    <div><div class="lbl" style="margin-bottom:6px" data-en="Livery">Colorazione</div><div class="chips" id="gLiv"></div></div>
+    <div class="chips"><button class="chip on" id="gRider" data-en="WITH RIDER">CON PILOTA</button><button class="chip on" id="gSpin" data-en="TURNTABLE">ROTAZIONE</button></div>
+    <button class="cta" id="gGo" data-en="START ▸">PARTENZA ▸</button>
+    <button class="ghost" id="gBack" data-en="◂ PICK AND BACK TO MENU">◂ SCEGLI E TORNA AL MENU</button>
   </div>
-  <div class="gviews"><button class="chip on" data-gv="three">3/4</button><button class="chip" data-gv="side">LATO</button><button class="chip" data-gv="rear">DIETRO</button><button class="chip" data-gv="detail">DETTAGLIO</button></div>
-  <div class="ghint">Trascina per ruotare · rotella per zoom · ◀ ▶ cambia moto</div>
+  <div class="gviews"><button class="chip on" data-gv="three">3/4</button><button class="chip" data-gv="side" data-en="SIDE">LATO</button><button class="chip" data-gv="rear" data-en="REAR">DIETRO</button><button class="chip" data-gv="detail" data-en="DETAIL">DETTAGLIO</button></div>
+  <div class="ghint" data-en="Drag to rotate · scroll to zoom · ◀ ▶ change bike">Trascina per ruotare · rotella per zoom · ◀ ▶ cambia moto</div>
 </div>
 
 <div id="pause" class="screen center hidden"><div class="panel">
-  <div class="reason">PAUSA</div>
-  <div class="btns" style="margin-top:20px"><button class="cta" id="resumeBtn">RIPRENDI</button><button class="ghost" id="pMenuBtn">MENU</button></div>
+  <div class="reason" data-en="PAUSED">PAUSA</div>
+  <div class="btns" style="margin-top:20px"><button class="cta" id="resumeBtn" data-en="RESUME">RIPRENDI</button><button class="ghost" id="pMenuBtn">MENU</button></div>
 </div></div>
 
 <div id="over" class="screen center hidden"><div class="panel">
   <img id="overArt" class="overart hidden" alt="">
   <div class="reason" id="reason">CADUTA</div>
   <div class="fs" id="finalScore">0</div>
-  <div id="newBest" class="hidden">★ NUOVO RECORD ★</div>
+  <div id="newBest" class="hidden" data-en="★ NEW RECORD ★">★ NUOVO RECORD ★</div>
   <div id="resTable"></div>
   <div class="stats" id="stats"></div>
-  <div class="btns"><button class="cta" id="againBtn">RIVINCITA</button><button class="ghost" id="menuBtn">MENU</button></div>
+  <div class="btns"><button class="cta" id="againBtn" data-en="PLAY AGAIN">RIVINCITA</button><button class="ghost" id="menuBtn">MENU</button></div>
 </div></div>
 
 <div id="touch" class="hidden"><div class="side" id="tLeft"></div><div class="side" id="tRight"></div></div>
 <div id="bodyCam" class="hidden">
   <div class="bcv"><video id="bcVid" playsinline muted></video><canvas id="bcCan" width="320" height="240"></canvas></div>
   <div class="bcm"><span>GAS</span><i><b id="bcGas"></b></i></div>
-  <div class="bcm"><span>PIEGA</span><i class="ctr"><b id="bcLean"></b></i></div>
+  <div class="bcm"><span data-en="LEAN">PIEGA</span><i class="ctr"><b id="bcLean"></b></i></div>
   <div class="bcd" id="bcDiag"></div>
   <div class="bcx" id="bcMsg"></div>
-  <div class="bcbtn"><button class="cta" id="bcOk">PRONTO ▸</button><button class="ghost" id="bcRecal">RICALIBRA</button><button class="ghost" id="bcOff">SPEGNI</button></div>
+  <div class="bcbtn"><button class="cta" id="bcOk" data-en="READY ▸">PRONTO ▸</button><button class="ghost" id="bcRecal" data-en="RECALIBRATE">RICALIBRA</button><button class="ghost" id="bcOff" data-en="TURN OFF">SPEGNI</button></div>
 </div>
 <div id="loading"style="position:fixed;inset:0;display:flex;align-items:center;justify-content:center;font-weight:900;font-style:italic;font-size:28px;letter-spacing:.1em;color:#fff">IMPENNATA…</div>
 
@@ -368,6 +371,16 @@ const store = {
   get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
   set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
 };
+/* language: Italian or English; English unless the browser is Italian */
+let LANG = store.get('imp_lang', /^it\b/i.test(navigator.language || '') ? 'it' : 'en');
+const tr = (it, en) => LANG === 'en' ? en : it;
+const posTxt = n => LANG === 'en' ? n + (n % 100 >= 11 && n % 100 <= 13 ? 'th' : ['th', 'st', 'nd', 'rd'][n % 10] || 'th') : n + '°';
+const TAG_EN = { 'Prototipo GP': 'GP prototype', 'Superbike · 220 CV': 'Superbike · 220 hp', 'Bici da corsa · Grand Tour': 'Road bike · Grand Tour', 'Cronometro · aero': 'Time trial · aero' };
+const mTag = m => tr(m.tag, TAG_EN[m.tag] || m.tag);
+const THEME_EN = { city: 'MILAN BY NIGHT', mountains: 'STELVIO PASS', desert: 'PISCINAS DUNES' };
+const COLOR_EN = { Nero: 'Black', Bianco: 'White', Blu: 'Blue', Rosso: 'Red', Arancio: 'Orange', Giallo: 'Yellow', Viola: 'Purple', Grigio: 'Grey', Verde: 'Green', Oro: 'Gold', Ciano: 'Cyan', Rosa: 'Pink', 'Velocità': 'Speed' };
+const CW_EN = { 'Nero Ultra': 'Ultra Black', 'Blu Velocità': 'Speed Blue' };
+const cwName = n => LANG === 'en' ? CW_EN[n] || n.split(' ').map(w => COLOR_EN[w] || w).join(' ') : n;
 const fmtT = t => { if (!isFinite(t)) return '–'; const m = Math.floor(t / 60), s = t - m * 60; return m + ':' + (s < 10 ? '0' : '') + s.toFixed(2); };
 function hash2(x, y) { const h = Math.sin(x * 127.1 + y * 311.7) * 43758.5453; return h - Math.floor(h); }
 function vnoise(x, y) {
@@ -1463,8 +1476,8 @@ function gantry(x, finish) {
   const beam = rbox(1.0, 1.5, 11.8, 0.2, post); beam.position.set(0, 6.6, 0); g.add(beam);
   const tex = canvasTex(1024, 128, (c, w, h) => {
     c.textAlign = 'center'; c.textBaseline = 'middle';
-    if (finish) { checker(c, w, h, 32); c.fillStyle = 'rgba(0,0,0,.8)'; c.fillRect(250, 20, 524, 88); c.fillStyle = '#fff'; c.font = 'italic 900 80px "Titillium Web"'; c.fillText('TRAGUARDO', w / 2, h / 2 + 3); }
-    else { c.fillStyle = '#0d0d10'; c.fillRect(0, 0, w, h); ['#009246', '#f4f5f0', '#ce2b37'].forEach((col, i) => { c.fillStyle = col; c.fillRect(i * w / 3, h - 16, w / 3, 16); }); c.fillStyle = '#fff'; c.font = 'italic 900 76px "Titillium Web"'; c.fillText('PARTENZA', w / 2, h / 2 - 6); }
+    if (finish) { checker(c, w, h, 32); c.fillStyle = 'rgba(0,0,0,.8)'; c.fillRect(250, 20, 524, 88); c.fillStyle = '#fff'; c.font = 'italic 900 80px "Titillium Web"'; c.fillText(tr('TRAGUARDO', 'FINISH'), w / 2, h / 2 + 3); }
+    else { c.fillStyle = '#0d0d10'; c.fillRect(0, 0, w, h); ['#009246', '#f4f5f0', '#ce2b37'].forEach((col, i) => { c.fillStyle = col; c.fillRect(i * w / 3, h - 16, w / 3, 16); }); c.fillStyle = '#fff'; c.font = 'italic 900 76px "Titillium Web"'; c.fillText(tr('PARTENZA', 'START'), w / 2, h / 2 - 6); }
   }, { clamp: true });
   for (const sx of [1, -1]) { const ban = new THREE.Mesh(new THREE.PlaneGeometry(11, 1.35), new THREE.MeshStandardMaterial({ map: tex, roughness: 0.5, emissive: '#ffffff', emissiveMap: tex, emissiveIntensity: 0.4 })); ban.position.set(0.51 * sx, 6.6, 0); ban.rotation.y = -Math.PI / 2 * sx; g.add(ban); }
   g.lights = [];
@@ -1676,12 +1689,12 @@ function setupHUD(two) {
   H.root.classList.remove('hidden');
   h('raceL').classList.toggle('hidden', !isRace()); h('freeL').classList.toggle('hidden', isRace()); h('hTC').classList.toggle('hidden', !isRace());
   h('mini').classList.toggle('hidden', !isGP());
-  h('bestLbl').textContent = isRace() ? 'Record' : 'Record punti';
+  h('bestLbl').textContent = isRace() ? tr('Record', 'Best time') : tr('Record punti', 'Best score');
   h('best').textContent = isRace() ? fmtT(store.get(bestKey(), Infinity)) : store.get('imp_best_free', 0).toLocaleString();
   h('turboLbl').textContent = sel.cls === 'moto' ? 'Turbo' : 'Sprint';
-  const act = isGP() ? 'impenna' : 'salto';
-  h('turboHint').textContent = !two ? (isGP() ? 'Impenna (SPAZIO) per caricare · SHIFT per usare' : 'Impenna per caricare · SHIFT per usare') : PL.i === 0 ? `F ${act} · G turbo` : `INVIO ${act} · CTRL DX o - turbo`;
-  const tag = h('ptag'); tag.classList.toggle('hidden', !two); tag.textContent = 'GIOCATORE ' + (PL.i + 1); tag.style.color = PL.col;
+  const act = isGP() ? tr('impenna', 'wheelie') : tr('salto', 'jump');
+  h('turboHint').textContent = !two ? (isGP() ? tr('Impenna (SPAZIO) per caricare · SHIFT per usare', 'Wheelie (SPACE) to charge · SHIFT to use') : tr('Impenna per caricare · SHIFT per usare', 'Wheelie to charge · SHIFT to use')) : PL.i === 0 ? `F ${act} · G turbo` : tr(`INVIO ${act} · CTRL DX o - turbo`, `ENTER ${act} · RIGHT CTRL or - turbo`);
+  const tag = h('ptag'); tag.classList.toggle('hidden', !two); tag.textContent = tr('GIOCATORE ', 'PLAYER ') + (PL.i + 1); tag.style.color = PL.col;
   h('pops').innerHTML = '';
 }
 function resetShared() {
@@ -1785,7 +1798,7 @@ function respawn() {
     for (const r of ramps) if (P.x >= r.x0 - 1 && P.x <= r.x + 1) P.x = r.x + 2;
   }
   Object.assign(P, { y: 0, vy: 0, v: CUR().vmax * 0.3, th: 0, w: 0, onGround: true, slope: 0, pedal: 0, latV: 0, lean: 0 });
-  tum = []; setPlayerVehicle(); state = 'play'; pop('RIPARTENZA', '', 'red');
+  tum = []; setPlayerVehicle(); state = 'play'; pop(tr('RIPARTENZA', 'BACK ON TRACK'), '', 'red');
   if (players.length > 1) { const tag = nameTag('G' + (PL.i + 1), PL.col); tag.position.set(CUR().wb / 2, 2.25, 0); veh.group.add(tag); }
 }
 function showOver(finished) {
@@ -1795,19 +1808,19 @@ function showOver(finished) {
   $('resTable').innerHTML = ''; $('newBest').classList.add('hidden');
   const rs = $('reason');
   if (isRace() && finished) {
-    const ent = [{ name: 'TU', model: CUR().name, t: G.finishTime, me: true }].concat(rivals.map(r => ({ name: r.name, model: MODELS[r.id].name, t: r.done ? r.time : raceT + (raceLen() - rivProg(r)) / Math.max(5, r.v) })));
+    const ent = [{ name: tr('TU', 'YOU'), model: CUR().name, t: G.finishTime, me: true }].concat(rivals.map(r => ({ name: r.name, model: MODELS[r.id].name, t: r.done ? r.time : raceT + (raceLen() - rivProg(r)) / Math.max(5, r.v) })));
     ent.sort((a, b) => a.t - b.t);
     const pos = ent.findIndex(e => e.me) + 1;
-    rs.textContent = pos === 1 ? 'VITTORIA!' : pos + '° POSTO'; rs.className = 'reason ' + (pos === 1 ? 'win' : '');
+    rs.textContent = pos === 1 ? tr('VITTORIA!', 'VICTORY!') : tr(pos + '° POSTO', posTxt(pos) + ' PLACE'); rs.className = 'reason ' + (pos === 1 ? 'win' : '');
     $('finalScore').textContent = fmtT(G.finishTime);
     if (G.finishTime < store.get(bestKey(), Infinity)) { store.set(bestKey(), G.finishTime); $('newBest').classList.remove('hidden'); }
-    $('resTable').innerHTML = '<table class="res">' + ent.map((e, i) => `<tr class="${e.me ? 'me' : ''}"><td class="m${i + 1}">${i + 1}°</td><td>${e.name} <span style="color:var(--dim)">· ${e.model}</span></td><td>${i === 0 ? fmtT(e.t) : '+' + (e.t - ent[0].t).toFixed(2) + 's'}</td></tr>`).join('') + '</table>';
-    $('stats').innerHTML = [['Punti stile', s.toLocaleString()], ['Impennata più lunga', G.bestWheelie.toFixed(1) + ' s'], ['Cadute', G.crashes], ['Salti mortali', G.flips]].map(([a, b]) => `<div>${a}<b>${b}</b></div>`).join('');
+    $('resTable').innerHTML = '<table class="res">' + ent.map((e, i) => `<tr class="${e.me ? 'me' : ''}"><td class="m${i + 1}">${posTxt(i + 1)}</td><td>${e.name} <span style="color:var(--dim)">· ${e.model}</span></td><td>${i === 0 ? fmtT(e.t) : '+' + (e.t - ent[0].t).toFixed(2) + 's'}</td></tr>`).join('') + '</table>';
+    $('stats').innerHTML = [[tr('Punti stile', 'Style points'), s.toLocaleString()], [tr('Impennata più lunga', 'Longest wheelie'), G.bestWheelie.toFixed(1) + ' s'], [tr('Cadute', 'Crashes'), G.crashes], [tr('Salti mortali', 'Flips'), G.flips]].map(([a, b]) => `<div>${a}<b>${b}</b></div>`).join('');
   } else {
-    rs.textContent = G.reason || 'CADUTA'; rs.className = 'reason bad';
+    rs.textContent = G.reason || tr('CADUTA', 'CRASHED'); rs.className = 'reason bad';
     const best = store.get('imp_best_free', 0); if (s > best) { store.set('imp_best_free', s); $('newBest').classList.remove('hidden'); }
     $('finalScore').textContent = s.toLocaleString();
-    $('stats').innerHTML = [['Distanza', Math.round(P.x - startX) + ' m'], ['Impennata più lunga', G.bestWheelie.toFixed(1) + ' s'], ['Volo massimo', G.maxAir.toFixed(2) + ' s'], ['Salti mortali', G.flips], ['Sfere', G.orbs], ['Record', Math.max(s, best).toLocaleString()]].map(([a, b]) => `<div>${a}<b>${b}</b></div>`).join('');
+    $('stats').innerHTML = [[tr('Distanza', 'Distance'), Math.round(P.x - startX) + ' m'], [tr('Impennata più lunga', 'Longest wheelie'), G.bestWheelie.toFixed(1) + ' s'], [tr('Volo massimo', 'Longest air'), G.maxAir.toFixed(2) + ' s'], [tr('Salti mortali', 'Flips'), G.flips], [tr('Sfere', 'Orbs'), G.orbs], [tr('Record', 'Best'), Math.max(s, best).toLocaleString()]].map(([a, b]) => `<div>${a}<b>${b}</b></div>`).join('');
   }
   $('over').classList.remove('hidden');
 }
@@ -1817,17 +1830,17 @@ function showOver2P() {
   setOverArt(null);
   state = 'over'; showTouch(false); $('lights').classList.add('hidden'); $('newBest').classList.add('hidden');
   const race = isRace();
-  const ents = players.map(pl => ({ pl, name: 'GIOCATORE ' + (pl.i + 1), model: MODELS[selModel(pl.i)].name, t: pl.G.finishTime || Infinity, score: Math.round(pl.G.score) }));
+  const ents = players.map(pl => ({ pl, name: tr('GIOCATORE ', 'PLAYER ') + (pl.i + 1), model: MODELS[selModel(pl.i)].name, t: pl.G.finishTime || Infinity, score: Math.round(pl.G.score) }));
   ents.sort(race ? (a, b) => (a.t - b.t) || (b.score - a.score) : (a, b) => b.score - a.score);
   const tie = race ? (!isFinite(ents[0].t) && ents[0].score === ents[1].score) : ents[0].score === ents[1].score;
   setOverArt(tie ? null : selModel(ents[0].pl.i));
-  const rs = $('reason'); rs.textContent = tie ? 'PAREGGIO!' : 'VINCE ' + ents[0].name + '!'; rs.className = 'reason win';
+  const rs = $('reason'); rs.textContent = tie ? tr('PAREGGIO!', 'DRAW!') : tr('VINCE ' + ents[0].name + '!', ents[0].name + ' WINS!'); rs.className = 'reason win';
   $('finalScore').textContent = race ? (isFinite(ents[0].t) ? fmtT(ents[0].t) : '–') : ents[0].score.toLocaleString();
   $('resTable').innerHTML = '<table class="res">' + ents.map((e, i) => {
-    const res = race ? (!isFinite(e.t) ? 'NON ARRIVATO' : i === 0 ? fmtT(e.t) : '+' + (e.t - ents[0].t).toFixed(2) + 's') : e.score.toLocaleString() + ' pt';
-    return `<tr><td class="m${i + 1}">${i + 1}°</td><td><span style="color:${e.pl.col}">●</span> ${e.name} <span style="color:var(--dim)">· ${e.model}</span></td><td>${res}</td></tr>`;
+    const res = race ? (!isFinite(e.t) ? tr('NON ARRIVATO', 'DID NOT FINISH') : i === 0 ? fmtT(e.t) : '+' + (e.t - ents[0].t).toFixed(2) + 's') : e.score.toLocaleString() + ' pt';
+    return `<tr><td class="m${i + 1}">${posTxt(i + 1)}</td><td><span style="color:${e.pl.col}">●</span> ${e.name} <span style="color:var(--dim)">· ${e.model}</span></td><td>${res}</td></tr>`;
   }).join('') + '</table>';
-  $('stats').innerHTML = players.flatMap(pl => [['G' + (pl.i + 1) + ' · punti stile', Math.round(pl.G.score).toLocaleString()], ['G' + (pl.i + 1) + ' · cadute', pl.G.crashes]]).map(([a, b]) => `<div>${a}<b>${b}</b></div>`).join('');
+  $('stats').innerHTML = players.flatMap(pl => [[tr('G', 'P') + (pl.i + 1) + tr(' · punti stile', ' · style points'), Math.round(pl.G.score).toLocaleString()], [tr('G', 'P') + (pl.i + 1) + tr(' · cadute', ' · crashes'), pl.G.crashes]]).map(([a, b]) => `<div>${a}<b>${b}</b></div>`).join('');
   $('over').classList.remove('hidden');
 }
 function endRace() {
@@ -1844,7 +1857,7 @@ function pop(txt, sub, cls = '') {
 const addPts = n => { G.score += n; };
 const addTurbo = n => { G.turbo = clamp(G.turbo + n, 0, 1); };
 function endWheelie() {
-  if (G.wheelieT > 0.8) pop(`IMPENNATA ${G.wheelieT.toFixed(1)}s`, '+' + Math.round(G.streak).toLocaleString());
+  if (G.wheelieT > 0.8) pop(`${tr('IMPENNATA', 'WHEELIE')} ${G.wheelieT.toFixed(1)}s`, '+' + Math.round(G.streak).toLocaleString());
   G.bestWheelie = Math.max(G.bestWheelie || 0, G.wheelieT); G.wheelieT = 0; G.streak = 0; G.mult = 1;
 }
 
@@ -1884,9 +1897,9 @@ function showTouch(on) {
   const t = $('touch'); if (!isTouch || !on || players.length > 1) { t.classList.add('hidden'); return; }
   t.classList.remove('hidden');
   const btn = (label, code, big) => `<div class="tb${big ? ' big' : ''}" data-k="${code}">${label}</div>`;
-  if (isGP()) { $('tLeft').innerHTML = btn('◀', 'KeyA', 1) + btn('▶', 'KeyD', 1); $('tRight').innerHTML = btn('FRENO', 'KeyS') + btn('TURBO', 'ShiftLeft') + btn('IMPEN<br>NA', 'Space') + btn(sel.cls === 'moto' ? 'GAS' : 'PEDALA', 'KeyW', 1); }
-  else if (sel.cls === 'moto') { $('tLeft').innerHTML = btn('FRENO', 'KeyS') + btn('TURBO', 'ShiftLeft'); $('tRight').innerHTML = btn('SALTO', 'Space') + btn('GAS', 'KeyW', 1); }
-  else { $('tLeft').innerHTML = btn('PEDALE<br>SX', 'KeyA', 1) + btn('PEDALE<br>DX', 'KeyD', 1); $('tRight').innerHTML = btn('FRENO', 'KeyS') + btn('SPRINT', 'ShiftLeft') + btn('SALTO', 'Space') + btn('TIRA', 'KeyW'); }
+  if (isGP()) { $('tLeft').innerHTML = btn('◀', 'KeyA', 1) + btn('▶', 'KeyD', 1); $('tRight').innerHTML = btn(tr('FRENO', 'BRAKE'), 'KeyS') + btn('TURBO', 'ShiftLeft') + btn(tr('IMPEN<br>NA', 'WHEE<br>LIE'), 'Space') + btn(sel.cls === 'moto' ? 'GAS' : tr('PEDALA', 'PEDAL'), 'KeyW', 1); }
+  else if (sel.cls === 'moto') { $('tLeft').innerHTML = btn(tr('FRENO', 'BRAKE'), 'KeyS') + btn('TURBO', 'ShiftLeft'); $('tRight').innerHTML = btn(tr('SALTO', 'JUMP'), 'Space') + btn('GAS', 'KeyW', 1); }
+  else { $('tLeft').innerHTML = btn(tr('PEDALE<br>SX', 'LEFT<br>PEDAL'), 'KeyA', 1) + btn(tr('PEDALE<br>DX', 'RIGHT<br>PEDAL'), 'KeyD', 1); $('tRight').innerHTML = btn(tr('FRENO', 'BRAKE'), 'KeyS') + btn('SPRINT', 'ShiftLeft') + btn(tr('SALTO', 'JUMP'), 'Space') + btn(tr('TIRA', 'PULL'), 'KeyW'); }
   t.querySelectorAll('.tb').forEach(b => {
     const k = b.dataset.k;
     const dn = e => { e.preventDefault(); keys[k] = true; b.classList.add('down'); onPress(k); };
@@ -1902,16 +1915,19 @@ function refreshMenu() {
   document.querySelectorAll('[data-mode]').forEach(b => b.classList.toggle('on', b.dataset.mode === sel.mode));
   $('modelSub').textContent = sel.cls === 'moto' ? 'corsara' : 'FRECCIA';
   const ids = Object.keys(MODELS).filter(k => MODELS[k].cls === sel.cls);
-  $('modelCards').innerHTML = ids.map(id => { const m = MODELS[id]; return `<button class="card art${id === curId() ? ' on' : ''}" data-model="${id}" style="background-image:linear-gradient(180deg,rgba(7,7,12,.05) 20%,rgba(7,7,12,.9)),url(${ART(id)})"><div class="ct">${m.name}</div><div class="cd">${m.tag}</div><div class="st"><span>VELOCITÀ</span><i style="--w:${m.stats[0]}%"></i><span>IMPENNATA</span><i style="--w:${m.stats[1]}%"></i><span>SALTO</span><i style="--w:${m.stats[2]}%"></i></div></button>`; }).join('');
+  $('modelCards').innerHTML = ids.map(id => { const m = MODELS[id]; return `<button class="card art${id === curId() ? ' on' : ''}" data-model="${id}" style="background-image:linear-gradient(180deg,rgba(7,7,12,.05) 20%,rgba(7,7,12,.9)),url(${ART(id)})"><div class="ct">${m.name}</div><div class="cd">${mTag(m)}</div><div class="st"><span>${tr('VELOCITÀ', 'SPEED')}</span><i style="--w:${m.stats[0]}%"></i><span>${tr('IMPENNATA', 'WHEELIE')}</span><i style="--w:${m.stats[1]}%"></i><span>${tr('SALTO', 'JUMP')}</span><i style="--w:${m.stats[2]}%"></i></div></button>`; }).join('');
   $('modelCards').querySelectorAll('[data-model]').forEach(b => b.onclick = () => { audioInit(); sel.model[sel.cls] = b.dataset.model; store.set('imp_model', sel.model); setPlayerVehicle(); refreshMenu(); });
   document.querySelectorAll('[data-pl]').forEach(b => b.classList.toggle('on', +b.dataset.pl === sel.players));
   $('menu').classList.toggle('two', sel.players === 2);
   renderP2Pick();
-  $('help').innerHTML = sel.players === 2 ? help2P() : isGP() ? `<b>W</b>/<b>↑</b> ${sel.cls === 'moto' ? 'gas' : 'pedala'} · <b>S</b>/<b>↓</b> freno · <b>A</b>/<b>D</b> o <b>←</b>/<b>→</b> sterza · <b>SPAZIO</b> impenna (carica il turbo) · <b>SHIFT</b> turbo · frena prima delle curve, schiva coni, balle e olio · <b>P</b> pausa · <b>M</b> musica`
+  $('help').innerHTML = sel.players === 2 ? help2P() : isGP() ? tr(`<b>W</b>/<b>↑</b> ${sel.cls === 'moto' ? 'gas' : 'pedala'} · <b>S</b>/<b>↓</b> freno · <b>A</b>/<b>D</b> o <b>←</b>/<b>→</b> sterza · <b>SPAZIO</b> impenna (carica il turbo) · <b>SHIFT</b> turbo · frena prima delle curve, schiva coni, balle e olio · <b>P</b> pausa · <b>M</b> musica`,
+      `<b>W</b>/<b>↑</b> ${sel.cls === 'moto' ? 'throttle' : 'pedal'} · <b>S</b>/<b>↓</b> brake · <b>A</b>/<b>D</b> or <b>←</b>/<b>→</b> steer · <b>SPACE</b> wheelie (charges turbo) · <b>SHIFT</b> turbo · brake before corners, dodge cones, hay bales and oil · <b>P</b> pause · <b>M</b> music`)
     : sel.cls === 'moto'
-    ? `<b>W</b>/<b>↑</b> gas: tieni premuto per alzare la ruota, dosa per restare in equilibrio · <b>S</b>/<b>↓</b> freno · <b>SPAZIO</b> salto · <b>SHIFT</b> turbo (si carica impennando) · in aria: gas = backflip · <b>P</b> pausa · <b>M</b> musica`
-    : `Alterna <b>A</b>+<b>D</b> (o <b>←</b>+<b>→</b>) per pedalare: il ritmo è velocità · <b>W</b>/<b>↑</b> tira il manubrio per impennare · <b>S</b> freno · <b>SPAZIO</b> bunny hop · <b>SHIFT</b> sprint · <b>P</b> pausa · <b>M</b> musica`;
-  $('menuBest').textContent = isGP() ? `RECORD GP ${THEMES[sel.world].name}: ${fmtT(store.get(bestKey(), Infinity))}` : isRace() ? `RECORD ${THEMES[sel.world].name}: ${fmtT(store.get(bestKey(), Infinity))}` : `RECORD FREESTYLE: ${store.get('imp_best_free', 0).toLocaleString()}`;
+    ? tr(`<b>W</b>/<b>↑</b> gas: tieni premuto per alzare la ruota, dosa per restare in equilibrio · <b>S</b>/<b>↓</b> freno · <b>SPAZIO</b> salto · <b>SHIFT</b> turbo (si carica impennando) · in aria: gas = backflip · <b>P</b> pausa · <b>M</b> musica`,
+      `<b>W</b>/<b>↑</b> throttle: hold to lift the front wheel, feather it to stay balanced · <b>S</b>/<b>↓</b> brake · <b>SPACE</b> jump · <b>SHIFT</b> turbo (charges while you wheelie) · in the air: throttle = backflip · <b>P</b> pause · <b>M</b> music`)
+    : tr(`Alterna <b>A</b>+<b>D</b> (o <b>←</b>+<b>→</b>) per pedalare: il ritmo è velocità · <b>W</b>/<b>↑</b> tira il manubrio per impennare · <b>S</b> freno · <b>SPAZIO</b> bunny hop · <b>SHIFT</b> sprint · <b>P</b> pausa · <b>M</b> musica`,
+      `Alternate <b>A</b>+<b>D</b> (or <b>←</b>+<b>→</b>) to pedal: rhythm is speed · <b>W</b>/<b>↑</b> pull the bars to wheelie · <b>S</b> brake · <b>SPACE</b> bunny hop · <b>SHIFT</b> sprint · <b>P</b> pause · <b>M</b> music`);
+  $('menuBest').textContent = isGP() ? `${tr('RECORD', 'BEST')} GP ${tr(THEMES[sel.world].name, THEME_EN[sel.world])}: ${fmtT(store.get(bestKey(), Infinity))}` : isRace() ? `${tr('RECORD', 'BEST')} ${tr(THEMES[sel.world].name, THEME_EN[sel.world])}: ${fmtT(store.get(bestKey(), Infinity))}` : `${tr('RECORD', 'BEST')} FREESTYLE: ${store.get('imp_best_free', 0).toLocaleString()}`;
 }
 document.querySelectorAll('[data-cls]').forEach(b => b.onclick = () => { audioInit(); if (sel.cls === b.dataset.cls) return; sel.cls = b.dataset.cls; store.set('imp_cls', sel.cls); setPlayerVehicle(); refreshMenu(); });
 document.querySelectorAll('[data-w]').forEach(b => b.onclick = () => { audioInit(); if (sel.world === b.dataset.w) return; sel.world = b.dataset.w; store.set('imp_world', sel.world); buildWorld(); refreshMenu(); });
@@ -1920,14 +1936,32 @@ document.querySelectorAll('[data-pl]').forEach(b => b.onclick = () => { sel.play
 function renderP2Pick() {
   const el = $('p2Pick'); if (sel.players !== 2) { el.innerHTML = ''; return; }
   const ids = Object.keys(MODELS).filter(k => MODELS[k].cls === sel.cls);
-  el.innerHTML = '<span class="lbl" style="color:#3fe0ff">G2</span>' + ids.map(id => `<button class="chip${id === selModel(1) ? ' on' : ''}" data-p2="${id}">${MODELS[id].name}</button>`).join('');
+  el.innerHTML = '<span class="lbl" style="color:#3fe0ff">' + tr('G2', 'P2') + '</span>' + ids.map(id => `<button class="chip${id === selModel(1) ? ' on' : ''}" data-p2="${id}">${MODELS[id].name}</button>`).join('');
   el.querySelectorAll('[data-p2]').forEach(b => b.onclick = () => { setSelModel(1, b.dataset.p2); refreshMenu(); });
 }
 function help2P() {
   const gp = isGP(), bike = sel.cls === 'bike', moto = !bike;
-  const lr = gp ? 'sterza' : bike ? 'pedala (alterna)' : 'freno / gas', act = gp ? 'impenna' : 'salto', up = gp ? (moto ? 'gas' : 'pedala') : (moto ? 'gas' : 'tira');
+  const lr = gp ? tr('sterza', 'steer') : bike ? tr('pedala (alterna)', 'pedal (alternate)') : tr('freno / gas', 'brake / throttle'), act = gp ? tr('impenna', 'wheelie') : tr('salto', 'jump'), up = gp ? (moto ? 'gas' : tr('pedala', 'pedal')) : (moto ? 'gas' : tr('tira', 'pull'));
+  if (LANG === 'en') return `<b style="color:#ff2d3d">P1</b> <b>W</b> ${up} · <b>S</b> brake · <b>A</b>/<b>D</b> ${lr} · <b>F</b> ${act} · <b>G</b> turbo &nbsp;│&nbsp; <b style="color:#3fe0ff">P2</b> <b>↑</b> ${up} · <b>↓</b> brake · <b>←</b>/<b>→</b> ${lr} · <b>ENTER</b> ${act} · <b>RIGHT CTRL</b> or <b>-</b> turbo · <b>P</b> pause`;
   return `<b style="color:#ff2d3d">G1</b> <b>W</b> ${up} · <b>S</b> freno · <b>A</b>/<b>D</b> ${lr} · <b>F</b> ${act} · <b>G</b> turbo &nbsp;│&nbsp; <b style="color:#3fe0ff">G2</b> <b>↑</b> ${up} · <b>↓</b> freno · <b>←</b>/<b>→</b> ${lr} · <b>INVIO</b> ${act} · <b>CTRL DX</b> o <b>-</b> turbo · <b>P</b> pausa`;
 }
+/* language switch: swaps static text (data-en) and redraws dynamic panels */
+function applyLang() {
+  document.documentElement.lang = LANG;
+  document.querySelectorAll('[data-en]').forEach(el => { if (el.dataset.it == null) el.dataset.it = el.innerHTML; el.innerHTML = LANG === 'en' ? el.dataset.en : el.dataset.it; });
+  document.querySelectorAll('[data-en-label]').forEach(el => {
+    if (el.dataset.itLabel == null) el.dataset.itLabel = el.getAttribute('aria-label') || el.getAttribute('title') || '';
+    const v = LANG === 'en' ? el.dataset.enLabel : el.dataset.itLabel;
+    if (el.hasAttribute('aria-label')) el.setAttribute('aria-label', v);
+    if (el.hasAttribute('title')) el.setAttribute('title', v);
+  });
+  document.querySelectorAll('[data-lang]').forEach(b => b.classList.toggle('on', b.dataset.lang === LANG));
+}
+document.querySelectorAll('[data-lang]').forEach(b => b.onclick = () => {
+  LANG = b.dataset.lang; store.set('imp_lang', LANG); applyLang(); refreshMenu(); bcChipUI();
+  if (!$('garage').classList.contains('hidden')) refreshGarageUI();
+});
+applyLang();
 $('startBtn').onclick = startRide; $('againBtn').onclick = startRide; $('menuBtn').onclick = toMenu;
 $('resumeBtn').onclick = resume; $('pMenuBtn').onclick = toMenu; $('mute').onclick = () => setMute(!AU.muted);
 setMute(AU.muted);
@@ -1986,7 +2020,7 @@ function physics(dt, auto) {
     tq -= 7 * Math.cos(P.th);
     P.w += (tq - 2.4 * P.w) * dt; P.th += P.w * dt;
     if (P.th < 0) { if (P.w < -2.2) { shakeA = Math.max(shakeA, 0.25); burst(P.x + M.wb, 0.1, P.z, 18, [4, 2.2, 0.8], 4); sfx('land'); } P.th = 0; P.w = 0; }
-    if (P.th > 1.62) return crash('RIBALTATO!');
+    if (P.th > 1.62) return crash(tr('RIBALTATO!', 'FLIPPED OVER!'));
   }
 }
 function land(gh) {
@@ -1994,12 +2028,12 @@ function land(gh) {
   P.y = gh; P.vy = 0; P.onGround = true; P.slope = rampSlope(P.x);
   const rel = normAng(P.th - Math.atan(P.slope)), flips = Math.floor((Math.abs(P.airRot) + 0.9) / TAU);
   const tol = CUR().kind === 'xc' ? 0.7 : 0.55;
-  if (rel < -tol || rel > 1.55) { P.th = rel; return crash(rel < 0 ? 'ATTERRAGGIO DI MUSO' : 'ATTERRAGGIO SBAGLIATO'); }
+  if (rel < -tol || rel > 1.55) { P.th = rel; return crash(rel < 0 ? tr('ATTERRAGGIO DI MUSO', 'NOSE-FIRST LANDING') : tr('ATTERRAGGIO SBAGLIATO', 'BAD LANDING')); }
   P.th = Math.max(0, rel); P.w = 0;
-  if (P.airT > 0.45) { const pts = Math.round(P.airT * 150); addPts(pts); addTurbo(0.08); pop(`VOLO ${P.airT.toFixed(2)}s`, '+' + pts, 'sm'); }
+  if (P.airT > 0.45) { const pts = Math.round(P.airT * 150); addPts(pts); addTurbo(0.08); pop(`${tr('VOLO', 'AIR')} ${P.airT.toFixed(2)}s`, '+' + pts, 'sm'); }
   G.maxAir = Math.max(G.maxAir, P.airT);
   if (flips > 0) { const pts = 1500 * flips * (flips > 1 ? 2 : 1); addPts(pts); addTurbo(0.35); G.flips += flips; pop((flips > 1 ? flips + 'x ' : '') + (P.airRot > 0 ? 'BACKFLIP' : 'FRONTFLIP'), '+' + pts.toLocaleString(), 'gold'); sfx('bonus'); }
-  if (rel > 0.35) { addPts(250); pop('ATTERRAGGIO IN IMPENNATA', '+250'); }
+  if (rel > 0.35) { addPts(250); pop(tr('ATTERRAGGIO IN IMPENNATA', 'WHEELIE LANDING'), '+250'); }
   shakeA = Math.max(shakeA, clamp(impact * 0.04, 0.1, 0.7));
   burst(P.x, gh + 0.05, P.z, 26, THEMES[sel.world].dust, 4); sfx('land');
 }
@@ -2009,9 +2043,9 @@ function collisions() {
   const body = [(rw[0] + fw[0]) / 2 - 0.3 * s, (rw[1] + fw[1]) / 2 + 0.7 * c];
   for (const o of track) {
     if (o.type === 'obs') {
-      if (!o['p' + PL.i] && P.x - r > o.x + o.w / 2) { o['p' + PL.i] = true; addPts(50); addTurbo(0.06); pop('PULITO', '+50', 'sm'); }
+      if (!o['p' + PL.i] && P.x - r > o.x + o.w / 2) { o['p' + PL.i] = true; addPts(50); addTurbo(0.06); pop(tr('PULITO', 'CLEAN'), '+50', 'sm'); }
       if (Math.abs(o.x - P.x) > 4) continue;
-      for (const [cx, cy] of [rw, fw]) { const px = clamp(cx, o.x - o.w / 2, o.x + o.w / 2), py = clamp(cy, 0, o.h); if ((cx - px) ** 2 + (cy - py) ** 2 < (r * 0.82) ** 2) return crash('CADUTA!'); }
+      for (const [cx, cy] of [rw, fw]) { const px = clamp(cx, o.x - o.w / 2, o.x + o.w / 2), py = clamp(cy, 0, o.h); if ((cx - px) ** 2 + (cy - py) ** 2 < (r * 0.82) ** 2) return crash(tr('CADUTA!', 'CRASHED!')); }
     } else if (o.type === 'orb' && !o.got) {
       if (Math.abs(o.x - P.x) > 4) continue;
       for (const [cx, cy] of [rw, fw, body]) if ((cx - o.x) ** 2 + (cy - o.y) ** 2 < 1.1) { o.got = true; o.mesh.visible = false; G.orbs++; addPts(100 * G.mult); addTurbo(0.1); burst(o.x, o.y, P.z, 22, [1, 3, 4], 4); sfx('orb'); break; }
@@ -2081,10 +2115,10 @@ function updateHUD(dt) {
   h('style').textContent = Math.round(hudScore).toLocaleString();
   const m = h('mult'); m.textContent = 'x' + (G.mult || 1) + ' COMBO'; m.classList.toggle('hot', (G.mult || 1) >= 3);
   if (isRace()) {
-    h('posBig').innerHTML = racePos() + '°<small>/' + (opponents().length + 1) + '</small>';
+    h('posBig').innerHTML = posTxt(racePos()) + '<small>/' + (opponents().length + 1) + '</small>';
     h('timer').textContent = fmtT(state === 'count' ? 0 : (G.finishTime || raceT));
     const len = raceLen();
-    h('progLbl').textContent = isGP() ? `GIRO ${Math.min(GP_LAPS[sel.cls], Math.floor(Math.max(0, P.s) / gp.L) + 1)} / ${GP_LAPS[sel.cls]}` : Math.round(clamp(P.x - startX, 0, len)) + ' / ' + len + ' m';
+    h('progLbl').textContent = isGP() ? `${tr('GIRO', 'LAP')} ${Math.min(GP_LAPS[sel.cls], Math.floor(Math.max(0, P.s) / gp.L) + 1)} / ${GP_LAPS[sel.cls]}` : Math.round(clamp(P.x - startX, 0, len)) + ' / ' + len + ' m';
     for (const [b, f] of dotEls) b.style.left = clamp(f() / len, 0, 1) * 100 + '%';
     if (isGP()) drawMini();
   }
@@ -2098,7 +2132,7 @@ function updateHUD(dt) {
   h('hBL').classList.toggle('danger', danger);
   if (danger) { warnT -= dt; if (warnT <= 0) { sfx('warn'); warnT = 0.18; } }
   const wb = h('wbanner');
-  if (G.wheelieT > 0.4 && state === 'play') { wb.classList.add('on'); wb.innerHTML = `IMPENNATA ${G.wheelieT.toFixed(1)}s` + (P.th > 0.9 && P.th < 1.35 ? ' · <em>PUNTO PERFETTO x2</em>' : ''); }
+  if (G.wheelieT > 0.4 && state === 'play') { wb.classList.add('on'); wb.innerHTML = `${tr('IMPENNATA', 'WHEELIE')} ${G.wheelieT.toFixed(1)}s` + (P.th > 0.9 && P.th < 1.35 ? ' · <em>' + tr('PUNTO PERFETTO', 'SWEET SPOT') + ' x2</em>' : ''); }
   else wb.classList.remove('on');
 }
 
@@ -2200,7 +2234,7 @@ function updatePlayer(rdt, t, GPm) {
     if (state === 'play') scoring(dt);
     if (state === 'play' && isRace() && myProg() >= raceLen()) {
       G.finishTime = raceT - (myProg() - raceLen()) / Math.max(1, P.v); state = 'finish'; finT = 0; endWheelie();
-      const p = racePos(), gpos = veh.group.position; pop(p === 1 ? 'VITTORIA!' : 'TRAGUARDO!', p + '° posto', 'gold'); sfx('bonus'); burst(gpos.x, 2, gpos.z, 120, [4, 4, 4], 10);
+      const p = racePos(), gpos = veh.group.position; pop(p === 1 ? tr('VITTORIA!', 'VICTORY!') : tr('TRAGUARDO!', 'FINISHED!'), tr(p + '° posto', posTxt(p) + ' place'), 'gold'); sfx('bonus'); burst(gpos.x, 2, gpos.z, 120, [4, 4, 4], 10);
     }
   } else if (state === 'finish' || state === 'done') {
     finT += rdt; GPm ? physicsGP(dt, true) : physics(dt, true);
@@ -2256,7 +2290,7 @@ function update(rdt, t) {
         go = true;
       }
     }
-    if (go) { flashBig('VIA!', true); sfx('go'); for (const pl of players) pl.state = 'play'; state = 'race'; }
+    if (go) { flashBig(tr('VIA!', 'GO!'), true); sfx('go'); for (const pl of players) pl.state = 'play'; state = 'race'; }
   } else raceT += rdt;
   const ph = state;
   for (const pl of players) { ctxLoad(pl); state = pl.state; updatePlayer(rdt, t, GPm); pl.state = state; ctxSave(pl); }
@@ -2520,7 +2554,7 @@ function physicsGP(dt, auto) {
   const wall = GPW + RUNOFF - 0.4;
   if (Math.abs(P.d) > wall) {
     P.d = Math.sign(P.d) * wall;
-    if (P.v > 28 && !auto) return crash('CONTRO IL MURO!');
+    if (P.v > 28 && !auto) return crash(tr('CONTRO IL MURO!', 'HIT THE WALL!'));
     P.latV *= -0.3; P.v *= 0.7; shakeA = 0.5; sfx('land');
   }
   const maxLean = moto ? 1.0 : 0.75;
@@ -2532,19 +2566,19 @@ function physicsGP(dt, auto) {
   tq -= 7 * Math.cos(P.th);
   P.w += (tq - 2.4 * P.w) * dt; P.th += P.w * dt;
   if (P.th < 0) { if (P.w < -2.2) { shakeA = Math.max(shakeA, 0.25); sfx('land'); } P.th = 0; P.w = 0; }
-  if (P.th > 1.62) return crash('RIBALTATO!');
-  if (P.th > 0.5 && Math.abs(P.lean) > 0.6) return crash('IMPENNATA IN CURVA!');
+  if (P.th > 1.62) return crash(tr('RIBALTATO!', 'FLIPPED OVER!'));
+  if (P.th > 0.5 && Math.abs(P.lean) > 0.6) return crash(tr('IMPENNATA IN CURVA!', 'WHEELIE IN A CORNER!'));
 }
 function hazardsGP() {
   const lapIdx = Math.floor(P.s / gp.L);
   for (const h of hazards) {
     const x = wrapD(P.s - h.s), lat = Math.abs(P.d - h.d);
     if (Math.abs(x) < h.len / 2 + 0.8 && lat < h.span + 0.35) {
-      if (h.type === 'oil') { if (h['hit' + PL.i] !== lapIdx) { h['hit' + PL.i] = lapIdx; P.latV += (Math.random() < 0.5 ? -1 : 1) * 7; P.v *= 0.9; pop('OLIO!', '', 'red'); shakeA = 0.4; } }
-      else return crash('CADUTA!');
+      if (h.type === 'oil') { if (h['hit' + PL.i] !== lapIdx) { h['hit' + PL.i] = lapIdx; P.latV += (Math.random() < 0.5 ? -1 : 1) * 7; P.v *= 0.9; pop(tr('OLIO!', 'OIL!'), '', 'red'); shakeA = 0.4; } }
+      else return crash(tr('CADUTA!', 'CRASHED!'));
     }
     const hp = h['prev' + PL.i];
-    if (hp !== undefined && hp < 0 && x >= 0 && Math.abs(x) < 5 && lat < h.span + 3 && h.type !== 'oil') { addPts(80); addTurbo(0.08); pop('SCHIVATO', '+80', 'sm'); }
+    if (hp !== undefined && hp < 0 && x >= 0 && Math.abs(x) < 5 && lat < h.span + 3 && h.type !== 'oil') { addPts(80); addTurbo(0.08); pop(tr('SCHIVATO', 'DODGED'), '+80', 'sm'); }
     h['prev' + PL.i] = x;
   }
 }
@@ -2552,7 +2586,7 @@ function lapCheck() {
   const laps = GP_LAPS[sel.cls], lap = Math.floor(Math.max(0, P.s) / gp.L);
   if (lap > G.lap) {
     const lt = raceT - G.lapStart; G.lapStart = raceT; G.lap = lap; G.bestLap = Math.min(G.bestLap, lt);
-    if (lap < laps) pop(lap === laps - 1 ? 'ULTIMO GIRO' : `GIRO ${lap + 1}/${laps}`, fmtT(lt), lap === laps - 1 ? 'gold' : '');
+    if (lap < laps) pop(lap === laps - 1 ? tr('ULTIMO GIRO', 'FINAL LAP') : `${tr('GIRO', 'LAP')} ${lap + 1}/${laps}`, fmtT(lt), lap === laps - 1 ? 'gold' : '');
   }
 }
 const _qY = new THREE.Quaternion(), _qR = new THREE.Quaternion(), _qP = new THREE.Quaternion(), AXX = v3(1, 0, 0), AXY = v3(0, 1, 0), AXZ = v3(0, 0, 1);
@@ -2688,9 +2722,9 @@ function refreshGarageUI() {
   $('gArt').src = ART(id); $('gArt').alt = m.name;
   document.querySelectorAll('[data-gcls]').forEach(b => b.classList.toggle('on', b.dataset.gcls === sel.cls));
   $('gBrand').textContent = sel.cls === 'moto' ? 'corsara' : 'FRECCIA'; $('gBrand').className = 'brand ' + (sel.cls === 'moto' ? 'ap' : 'pn');
-  $('gName').textContent = m.name; $('gTag').textContent = m.tag;
-  $('gStats').innerHTML = [['VELOCITÀ', m.stats[0]], ['IMPENNATA', m.stats[1]], ['SALTO', m.stats[2]]].map(([a, v]) => `<span>${a}</span><i style="--w:${v}%"></i>`).join('');
-  $('gLiv').innerHTML = COLORWAYS[id].map((n, i) => `<button class="chip${i === alt ? ' on' : ''}" data-gl="${i}">${n}</button>`).join('');
+  $('gName').textContent = m.name; $('gTag').textContent = mTag(m);
+  $('gStats').innerHTML = [[tr('VELOCITÀ', 'SPEED'), m.stats[0]], [tr('IMPENNATA', 'WHEELIE'), m.stats[1]], [tr('SALTO', 'JUMP'), m.stats[2]]].map(([a, v]) => `<span>${a}</span><i style="--w:${v}%"></i>`).join('');
+  $('gLiv').innerHTML = COLORWAYS[id].map((n, i) => `<button class="chip${i === alt ? ' on' : ''}" data-gl="${i}">${cwName(n)}</button>`).join('');
   $('gLiv').querySelectorAll('[data-gl]').forEach(b => b.onclick = () => { setSelAlt(ctxPI, +b.dataset.gl); showGarageBike(); });
   $('gRider').classList.toggle('on', gRiderOn);
   $('gWho').classList.toggle('hidden', sel.players !== 2);
@@ -2831,7 +2865,7 @@ function bcOnResult(e) {
 }
 const DEG = Math.PI / 180;
 function bcMsg(t, s) { $('bcMsg').innerHTML = t + (s ? `<small>${s}</small>` : ''); }
-function bcChipUI() { const c = $('bcChip'); c.classList.toggle('on', BC.on); c.textContent = BC.on ? '📷 CORPO ATTIVO ✓' : '📷 GUIDA COL CORPO'; }
+function bcChipUI() { const c = $('bcChip'); c.classList.toggle('on', BC.on); c.textContent = BC.on ? tr('📷 CORPO ATTIVO ✓', '📷 BODY CONTROL ON ✓') : tr('📷 GUIDA COL CORPO', '📷 BODY CONTROL'); }
 function bcShowCal(on) { BC.calib = on; $('bodyCam').classList.toggle('cal', on); $('bodyCam').classList.toggle('hidden', !on && !bcInRace()); }
 const bcInRace = () => BC.on && ['race', 'count', 'paused'].includes(state);
 async function bcStart() {
@@ -2839,12 +2873,12 @@ async function bcStart() {
   if (BC.on) { bcShowCal(true); return bcCalibrate(); }
   BC.busy = true; bcShowCal(true); $('bcOk').style.display = 'none';
   try {
-    bcMsg('Avvio la webcam…', 'Consenti l\'accesso alla fotocamera quando il browser lo chiede.');
+    bcMsg(tr('Avvio la webcam…', 'Starting the webcam…'), tr('Consenti l\'accesso alla fotocamera quando il browser lo chiede.', 'Allow camera access when your browser asks.'));
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) throw new Error('nocam');
     bcStream = await navigator.mediaDevices.getUserMedia({ video: { width: { ideal: 1280 }, height: { ideal: 720 }, facingMode: 'user' }, audio: false });
     const v = $('bcVid'); v.srcObject = bcStream; await v.play();
     if (!bcW && !bcPose) {
-      bcMsg('Carico il riconoscimento del corpo…', 'Solo la prima volta, qualche secondo.');
+      bcMsg(tr('Carico il riconoscimento del corpo…', 'Loading body tracking…'), tr('Solo la prima volta, qualche secondo.', 'First time only, a few seconds.'));
       try { bcW = await bcInitWorker(); bcW.onmessage = bcOnResult; bcMode = 'worker'; }
       catch (e) { console.warn('vision worker unavailable, running on the main thread', e); bcW = null; }
     }
@@ -2865,10 +2899,10 @@ async function bcStart() {
     if (BC.cal) { BC.ready = true; bcDone(); } else bcCalibrate();
   } catch (e) {
     console.warn('body control', e);
-    const why = e && e.name === 'NotAllowedError' ? 'Accesso alla webcam negato. Consentilo dalle impostazioni del sito e riprova.'
-      : e && (e.name === 'NotFoundError' || e.message === 'nocam') ? 'Nessuna webcam trovata. Se hai aperto il file con doppio clic, prova da un indirizzo http://localhost o https.'
-      : 'Non riesco ad avviare il riconoscimento. Serve una connessione internet la prima volta.';
-    BC.busy = false; bcStop(); bcShowCal(true); bcMsg('Controllo col corpo non disponibile', why);
+    const why = e && e.name === 'NotAllowedError' ? tr('Accesso alla webcam negato. Consentilo dalle impostazioni del sito e riprova.', 'Webcam access was blocked. Allow it in the site settings and try again.')
+      : e && (e.name === 'NotFoundError' || e.message === 'nocam') ? tr('Nessuna webcam trovata. Se hai aperto il file con doppio clic, prova da un indirizzo http://localhost o https.', 'No webcam found. If you opened the file by double-clicking it, try from an http://localhost or https address.')
+      : tr('Non riesco ad avviare il riconoscimento. Serve una connessione internet la prima volta.', 'Could not start body tracking. It needs an internet connection the first time.');
+    BC.busy = false; bcStop(); bcShowCal(true); bcMsg(tr('Controllo col corpo non disponibile', 'Body control unavailable'), why);
     $('bcOk').style.display = 'none';
   }
 }
@@ -2879,7 +2913,7 @@ function bcStop() {
 }
 function bcDone() {
   $('bcOk').style.display = '';
-  bcMsg('Pronto! Prova a muoverti e guarda le barre.', 'Piega le spalle = sterza · Ruota il polso destro verso di te = gas · Alza entrambe le mani verso l’alto = impennata. In Sprint piega a destra per spingere, a sinistra per frenare. Salto con SPAZIO. La tastiera resta attiva.');
+  bcMsg(tr('Pronto! Prova a muoverti e guarda le barre.', 'Ready! Try moving and watch the bars.'), tr('Piega le spalle = sterza · Ruota il polso destro verso di te = gas · Alza entrambe le mani verso l’alto = impennata. In Sprint piega a destra per spingere, a sinistra per frenare. Salto con SPAZIO. La tastiera resta attiva.', 'Lean your shoulders = steer · Roll your right wrist towards you = throttle · Raise both hands = wheelie. In Sprint lean right to push, left to brake. Jump with SPACE. The keyboard still works.'));
 }
 const bcWait = ms => new Promise(r => setTimeout(r, ms));
 async function bcSample(ms, need) {
@@ -2895,12 +2929,12 @@ async function bcSample(ms, need) {
   const out = {}, miss = []; for (const k of need) { if (!n[k] || n[k] < Math.max(2, frames * 0.4)) miss.push(k); else out[k] = acc[k] / n[k]; }
   return miss.length ? { miss } : out;
 }
-const bcMissText = m => [m.some(k => k === 'roll' || k === 'width') && 'spalle', m.some(k => k === 'lwy' || k === 'rwy') && 'polsi', m.includes('twist') && 'mano destra'].filter(Boolean).join(', ');
+const bcMissText = m => [m.some(k => k === 'roll' || k === 'width') && tr('spalle', 'shoulders'), m.some(k => k === 'lwy' || k === 'rwy') && tr('polsi', 'wrists'), m.includes('twist') && tr('mano destra', 'right hand')].filter(Boolean).join(', ');
 function bcMissHelp(m) {
   const t = [];
-  if (m.includes('roll') || m.includes('width')) t.push('Le spalle devono essere entrambe nell’inquadratura: allontanati un po’ o alza la webcam.');
-  if (m.includes('lwy') || m.includes('rwy')) t.push('Tieni le mani davanti al petto, dentro l’immagine.');
-  if (m.includes('twist')) t.push('Mano destra ben illuminata, dita non chiuse a pugno, dorso verso la webcam: i puntini rossi devono comparire sulla mano.');
+  if (m.includes('roll') || m.includes('width')) t.push(tr('Le spalle devono essere entrambe nell’inquadratura: allontanati un po’ o alza la webcam.', 'Both shoulders must be in the frame: move back a little or raise the webcam.'));
+  if (m.includes('lwy') || m.includes('rwy')) t.push(tr('Tieni le mani davanti al petto, dentro l’immagine.', 'Keep your hands in front of your chest, inside the picture.'));
+  if (m.includes('twist')) t.push(tr('Mano destra ben illuminata, dita non chiuse a pugno, dorso verso la webcam: i puntini rossi devono comparire sulla mano.', 'Right hand well lit, fingers not in a tight fist, back of the hand towards the webcam: the red dots should appear on your hand.'));
   return t.join(' ');
 }
 async function bcCountdown(text, sub) { for (let i = 3; i > 0; i--) { bcMsg(`${text} · ${i}`, sub); await bcWait(900); } }
@@ -2909,15 +2943,15 @@ async function bcCalibrate() {
   try {
     for (;;) {
       if (!BC.on) return;
-      await bcCountdown('Posizione di guida, gas chiuso', 'A circa 1 m dalla webcam, spalle e mani inquadrate, buona luce davanti a te. Mani davanti al petto come sul manubrio, dita piegate ma non a pugno stretto, dorso della mano destra verso la webcam.');
-      bcMsg('Fermo così…');
+      await bcCountdown(tr('Posizione di guida, gas chiuso', 'Riding position, throttle closed'), tr('A circa 1 m dalla webcam, spalle e mani inquadrate, buona luce davanti a te. Mani davanti al petto come sul manubrio, dita piegate ma non a pugno stretto, dorso della mano destra verso la webcam.', 'About 1 m from the webcam, shoulders and hands in frame, good light in front of you. Hands in front of your chest as if on the handlebars, fingers bent but not a tight fist, back of your right hand towards the webcam.'));
+      bcMsg(tr('Fermo così…', 'Hold still…'));
       const a = await bcSample(1200, ['roll', 'width', 'twist', 'lwy', 'rwy']);
-      if (a.miss) { bcMsg('Manca qualcosa: ' + bcMissText(a.miss), bcMissHelp(a.miss) + ' Riprovo…'); await bcWait(2600); continue; }
-      await bcCountdown('Ora apri tutto il gas e tieni', 'Ruota il polso destro verso di te, come una manopola vera.');
-      bcMsg('Tieni il gas aperto…');
+      if (a.miss) { bcMsg(tr('Manca qualcosa: ', 'Something is missing: ') + bcMissText(a.miss), bcMissHelp(a.miss) + tr(' Riprovo…', ' Retrying…')); await bcWait(2600); continue; }
+      await bcCountdown(tr('Ora apri tutto il gas e tieni', 'Now open the throttle fully and hold'), tr('Ruota il polso destro verso di te, come una manopola vera.', 'Roll your right wrist towards you, like a real throttle grip.'));
+      bcMsg(tr('Tieni il gas aperto…', 'Keep the throttle open…'));
       const b = await bcSample(1200, ['twist']);
       if (!BC.on) return;
-      if (b.miss) { bcMsg('Ho perso la mano destra', bcMissHelp(b.miss) + ' Riprovo…'); await bcWait(2600); continue; }
+      if (b.miss) { bcMsg(tr('Ho perso la mano destra', 'Lost track of your right hand'), bcMissHelp(b.miss) + tr(' Riprovo…', ' Retrying…')); await bcWait(2600); continue; }
       let span = normAng(b.twist - a.twist);
       if (Math.abs(span) < 10 * DEG) span = (span < 0 ? -1 : 1) * 35 * DEG;
       BC.cal = { v: BC_V, roll: a.roll, width: a.width, twist: a.twist, span, lwy: a.lwy, rwy: a.rwy };
@@ -2993,7 +3027,7 @@ function bcProcess(pl, hands, aspect, now, map) {
   bcEvents();
   bcDraw(pl, hi >= 0 ? hands.landmarks[hi] : null);
   const ok = (b, t) => `<em class="${b ? 'ok' : 'no'}">${b ? '●' : '○'} ${t}</em>`;
-  $('bcDiag').innerHTML = ok(raw.roll != null, 'SPALLE') + ok(raw.lwy != null, 'POLSI') + ok(raw.twist != null, 'MANO DX') + `<em>${Math.round(BC.fps || 0)} FPS</em>`;
+  $('bcDiag').innerHTML = ok(raw.roll != null, tr('SPALLE', 'SHOULDERS')) + ok(raw.lwy != null, tr('POLSI', 'WRISTS')) + ok(raw.twist != null, tr('MANO DX', 'R HAND')) + `<em>${Math.round(BC.fps || 0)} FPS</em>`;
 }
 // edge-triggered actions: jump in Sprint, alternate leans pedal the bicycle
 function bcEvents() {
@@ -3033,7 +3067,7 @@ async function boot() {
   players = [makePlayer(0, true)]; ctxLoad(players[0]);
   try { await loadBikeModel(); } catch (e) { console.warn('Bike model not loaded', e); }
   buildWorld(); setPlayerVehicle(); toMenu();
-  $('loading').remove();
+  bcChipUI(); $('loading').remove();
   requestAnimationFrame(frame);
 }
 boot();
