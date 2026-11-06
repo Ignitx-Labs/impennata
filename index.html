@@ -54,6 +54,9 @@ body.split::after{content:"";position:fixed;left:0;right:0;top:50%;height:4px;ma
 #hTR{top:14px;right:14px;text-align:right;min-width:130px}
 #hTR .v{font-family:var(--num);font-size:18px;font-weight:700;margin-bottom:4px}
 #mute{position:absolute;top:120px;right:14px;pointer-events:auto;cursor:pointer;font-family:var(--display);font-weight:700;font-size:11px;letter-spacing:.15em;color:var(--dim);background:var(--panel);border:1px solid var(--line);padding:6px 10px;border-radius:4px}
+#pauseBtn{position:absolute;top:120px;right:84px;pointer-events:auto;cursor:pointer;font-family:var(--display);font-weight:900;font-size:12px;letter-spacing:.12em;color:var(--ink);background:var(--panel);border:1px solid var(--line);padding:6px 10px;border-radius:4px;touch-action:manipulation}
+#pauseBtn:hover,#mute:hover{border-color:#fff}
+@media (pointer:coarse){#pauseBtn,#mute{padding:10px 14px;font-size:13px}#pauseBtn{right:100px}}
 #hBL{bottom:14px;left:14px;width:200px}
 #mini{top:120px;left:14px;width:180px;height:140px;padding:0}
 #hBL svg{display:block;width:100%;height:auto}
@@ -228,6 +231,7 @@ table.res .m1{color:var(--gold)}table.res .m2{color:#d6dbe6}table.res .m3{color:
   </div>
   <div id="hTR" class="hb"><div class="lbl" id="bestLbl">Record</div><div class="v" id="best">–</div><div class="lbl" data-en="Style points">Punti stile</div><div class="v" id="style">0</div></div>
   <button id="mute">♪ ON</button>
+  <button id="pauseBtn" aria-label="Pausa" data-en-label="Pause">❚❚</button>
   <canvas id="mini" class="hb hidden" width="180" height="140" aria-label="Mappa del circuito" data-en-label="Track map"></canvas>
   <div id="hBL" class="hb">
     <div class="lbl" data-en="Wheelie angle">Angolo impennata</div>
@@ -1963,7 +1967,7 @@ document.querySelectorAll('[data-lang]').forEach(b => b.onclick = () => {
 });
 applyLang();
 $('startBtn').onclick = startRide; $('againBtn').onclick = startRide; $('menuBtn').onclick = toMenu;
-$('resumeBtn').onclick = resume; $('pMenuBtn').onclick = toMenu; $('mute').onclick = () => setMute(!AU.muted);
+$('resumeBtn').onclick = resume; $('pauseBtn').onclick = e => { e.currentTarget.blur(); state === 'paused' ? resume() : pause(); }; $('pMenuBtn').onclick = toMenu; $('mute').onclick = () => setMute(!AU.muted);
 setMute(AU.muted);
 
 /* ================= PHYSICS ================= */

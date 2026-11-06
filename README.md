@@ -85,7 +85,7 @@ At the top of this section you can also choose:
 | **SHIFT** | Turbo |
 
 ### Always available
-- **P** or **Esc**: pause
+- **P**, **Esc** or the **❚❚** button (top right): pause, then **RESUME** or go back to the **MENU**
 - **M**: music on/off
 
 ### Two players (one keyboard)
@@ -98,7 +98,7 @@ At the top of this section you can also choose:
 | Turbo | **G** | **RIGHT CTRL** or **-** |
 
 ### Touch screens
-On phones and tablets, on-screen buttons appear during a race (throttle, brake, jump, turbo and so on).
+On phones and tablets, on-screen buttons appear during a race (throttle, brake, jump, turbo and so on). Tap **❚❚** at the top right to pause or quit to the menu. Body control also works with a phone's front camera.
 
 ---
 
