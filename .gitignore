@@ -1,0 +1,11 @@
+# Google Drive / OS files
+desktop.ini
+Thumbs.db
+.DS_Store
+# local tooling
+.claude/
+# old versions and unused source models (not needed to play)
+garage.html
+index-v1-neon.html
+assets/rsv4-model.js
+assets/*.glb
